@@ -1,0 +1,1081 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles */
+body {
+    font-family: "Courier New", monospace;
+}
+
+/* Remove default scrollbar and add custom one */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color, #000000);
+    border-left: 1px solid var(--text-color, #ffffff);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-color, #ffffff);
+    border: 2px solid var(--bg-color, #000000);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-color-hover, #cccccc);
+}
+
+/* Firefox scrollbar */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-color, #ffffff) var(--bg-color, #000000);
+}
+
+/* Custom Cursor */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+}
+
+.cursor-inner {
+    width: 8px;
+    height: 8px;
+    background: var(--text-color, #ffffff);
+    border-radius: 50%;
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    transition: transform 0.1s ease;
+}
+
+.cursor-outer {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--text-color, #ffffff);
+    border-radius: 50%;
+    position: absolute;
+    top: -16px;
+    left: -16px;
+    transition: all 0.3s ease;
+    animation: cursor-pulse 2s infinite;
+}
+
+.custom-cursor.clicking .cursor-inner {
+    transform: scale(1.5);
+    background: var(--text-color, #ffffff);
+}
+
+.custom-cursor.clicking .cursor-outer {
+    transform: scale(0.8);
+    border-width: 3px;
+}
+
+@keyframes cursor-pulse {
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+/* Hide default cursor */
+* {
+    cursor: none !important;
+}
+
+/* Navigation Styles */
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text-color, #ffffff);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    border-radius: 4px;
+}
+
+.nav-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(128, 128, 128, 0.1),
+        transparent
+    );
+    transition: left 0.5s;
+}
+
+.nav-link:hover::before {
+    left: 100%;
+}
+
+.nav-link:hover {
+    border-color: var(--text-color, #ffffff);
+    background: var(--text-color, #ffffff);
+    color: var(--bg-color, #000000);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(128, 128, 128, 0.3);
+}
+
+.nav-link.active {
+    border-color: var(--text-color, #ffffff);
+    background: var(--text-color, #ffffff);
+    color: var(--bg-color, #000000);
+}
+
+.nav-link.external-link:hover {
+    background: var(--text-color, #ffffff);
+    color: var(--bg-color, #000000);
+}
+
+/* Disable right-click */
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Allow text selection for content */
+p,
+span,
+div {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Disable context menu */
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: none !important;
+}
+
+/* Brutal card style */
+.brutal-card {
+    border: 2px solid var(--text-color, #ffffff);
+    background: var(--bg-color, #000000);
+    color: var(--text-color, #ffffff);
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.brutal-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(128, 128, 128, 0.1),
+        transparent
+    );
+    transition: left 0.5s;
+}
+
+.brutal-card:hover::before {
+    left: 100%;
+}
+
+.brutal-card:hover {
+    background: var(--text-color, #ffffff);
+    color: var(--bg-color, #000000);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(128, 128, 128, 0.3);
+    border-color: var(--bg-color, #000000);
+}
+
+/* Fix for project card button styling */
+.brutal-card:hover .brutal-btn {
+    background: var(--bg-color, #000000);
+    color: var(--text-color, #ffffff);
+    border-color: var(--text-color, #ffffff);
+}
+
+.brutal-card:hover .brutal-btn:hover {
+    background: var(--text-color, #ffffff);
+    color: var(--bg-color, #000000);
+    border-color: var(--bg-color, #000000);
+}
+
+.brutal-card:active {
+    transform: translateY(-2px) scale(1.01);
+    transition: all 0.1s ease;
+}
+
+/* Brutal button styles */
+.brutal-btn {
+    border: 2px solid var(--text-color, #ffffff);
+    background: var(--bg-color, #000000);
+    color: var(--text-color, #ffffff);
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    overflow: hidden;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.brutal-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(128, 128, 128, 0.2),
+        transparent
+    );
+    z-index: -1;
+    transition: left 0.4s;
+}
+
+.brutal-btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--text-color, #ffffff);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition:
+        width 0.3s,
+        height 0.3s;
+    z-index: -1;
+}
+
+.brutal-btn:hover::before {
+    left: 100%;
+}
+
+.brutal-btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+.brutal-btn:hover {
+    color: var(--bg-color, #000000);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(128, 128, 128, 0.4);
+    border-color: var(--text-color, #ffffff);
+    background: var(--text-color, #ffffff);
+}
+
+.brutal-btn:active {
+    transform: translateY(-1px);
+    transition: all 0.1s ease;
+}
+
+.brutal-btn-outline {
+    border: 2px solid var(--text-color, #ffffff);
+    background: var(--bg-color, #000000);
+    color: var(--text-color, #ffffff);
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.brutal-btn-outline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--text-color, #ffffff);
+    z-index: -1;
+    transition: width 0.3s ease;
+}
+
+.brutal-btn-outline::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background: var(--text-color, #ffffff);
+    z-index: -1;
+    transition: width 0.3s ease 0.1s;
+}
+
+.brutal-btn-outline:hover {
+    color: var(--bg-color, #000000);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(128, 128, 128, 0.4);
+}
+
+.brutal-btn-outline:hover::before {
+    width: 51%;
+}
+
+.brutal-btn-outline:hover::after {
+    width: 51%;
+}
+
+.brutal-btn-outline:active {
+    transform: translateY(-1px);
+    transition: all 0.1s ease;
+}
+
+/* Terminal specific styles */
+.brutal-terminal-card {
+    border: 2px solid var(--text-color, #ffffff);
+    background: var(--bg-color, #000000);
+    color: var(--text-color, #ffffff);
+    position: relative;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.brutal-terminal-card::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--text-color, #ffffff);
+    z-index: -1;
+    transform: scale(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.brutal-terminal-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--text-color, #ffffff);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.brutal-terminal-card:hover::before {
+    transform: scale(1);
+}
+
+.brutal-terminal-card:hover::after {
+    transform: scaleX(1);
+}
+
+.brutal-terminal-card:hover {
+    background: var(--text-color, #ffffff);
+    color: var(--bg-color, #000000);
+    border-color: var(--bg-color, #000000);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+        0 8px 32px rgba(128, 128, 128, 0.3),
+        inset 0 0 0 2px var(--bg-color, #000000);
+}
+
+/* Minimal scan line effect */
+.scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--bg-color, #000000);
+    animation: scan-sweep 2s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+@keyframes scan-sweep {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+/* Terminal grid overlay */
+.terminal-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(128, 128, 128, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(128, 128, 128, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0;
+    animation: grid-fade-in 0.5s ease-in-out forwards;
+}
+
+@keyframes grid-fade-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Enhanced terminal line typing effect */
+.terminal-line {
+    display: inline-block;
+    animation: minimal-typewriter 0.8s steps(40, end);
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+.terminal-line::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: currentColor;
+    opacity: 0;
+    animation: cursor-blink 0.8s ease-in-out;
+}
+
+@keyframes minimal-typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes cursor-blink {
+    0%,
+    50% {
+        opacity: 1;
+    }
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Terminal window controls animation */
+.brutal-terminal-card:hover .flex.space-x-2.mr-4 > div:nth-child(1) {
+    animation: control-pulse 1.5s ease-in-out infinite;
+}
+
+.brutal-terminal-card:hover .flex.space-x-2.mr-4 > div:nth-child(2) {
+    animation: control-bounce 1s ease-in-out infinite;
+    animation-delay: 0.2s;
+}
+
+.brutal-terminal-card:hover .flex.space-x-2.mr-4 > div:nth-child(3) {
+    animation: control-pulse 1.5s ease-in-out infinite;
+    animation-delay: 0.4s;
+}
+
+@keyframes control-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes control-bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+/* Active state for terminal */
+.brutal-terminal-card:active {
+    transform: translateY(-2px) scale(1.01);
+    transition: all 0.1s ease;
+}
+
+/* Responsive terminal effects */
+@media (max-width: 768px) {
+    .brutal-terminal-card:hover {
+        transform: translateY(-2px) scale(1.01);
+    }
+
+    .terminal-grid {
+        background-size: 15px 15px;
+    }
+}
+
+/* Reduced motion for terminal */
+@media (prefers-reduced-motion: reduce) {
+    .terminal-line {
+        animation: none;
+    }
+
+    .scan-line {
+        animation: none;
+        display: none;
+    }
+
+    .terminal-grid {
+        animation: none;
+    }
+
+    .brutal-terminal-card:hover {
+        transform: none;
+    }
+
+    .brutal-terminal-card:hover .flex.space-x-2.mr-4 > div {
+        animation: none;
+    }
+}
+
+/* Enhanced cursor animations */
+@keyframes ping {
+    75%,
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* CSS Variables for theme switching */
+:root {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --text-color-hover: #cccccc;
+}
+
+.bg-white {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --text-color-hover: #333333;
+}
+
+/* Glitch text effect */
+.glitch-text {
+    position: relative;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    animation: glitch-1 0.5s infinite;
+    color: #ffffff;
+    z-index: -1;
+}
+
+.glitch-text::after {
+    animation: glitch-2 0.5s infinite;
+    color: #ffffff;
+    z-index: -2;
+}
+
+@keyframes glitch-1 {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes glitch-2 {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(2px, 2px);
+    }
+    40% {
+        transform: translate(2px, -2px);
+    }
+    60% {
+        transform: translate(-2px, 2px);
+    }
+    80% {
+        transform: translate(-2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Typewriter effect */
+.typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation:
+        typing 3s steps(40, end),
+        blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #ffffff;
+    }
+}
+
+/* ASCII background animation */
+.ascii-bg-1 {
+    animation: scroll-up 20s linear infinite;
+    white-space: pre;
+    line-height: 1;
+}
+
+@keyframes scroll-up {
+    0% {
+        transform: translateY(100vh);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+.ascii-bg-2 {
+    animation: scroll-diagonal 25s linear infinite;
+    white-space: pre;
+    line-height: 1;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+}
+
+@keyframes scroll-diagonal {
+    0% {
+        transform: translate(-50vw, 100vh) rotate(0deg);
+    }
+    100% {
+        transform: translate(150vw, -100vh) rotate(360deg);
+    }
+}
+
+.ascii-bg-3 {
+    animation: fade-pulse 15s ease-in-out infinite;
+    white-space: pre;
+    line-height: 1;
+    position: absolute;
+    top: 60%;
+    right: 5%;
+}
+
+@keyframes fade-pulse {
+    0%,
+    100% {
+        opacity: 0.1;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 0.3;
+        transform: scale(1.2);
+    }
+}
+
+/* Selection styling */
+::selection {
+    background: var(--text-color, #ffffff);
+    color: var(--bg-color, #000000);
+}
+
+::-moz-selection {
+    background: var(--text-color, #ffffff);
+    color: var(--bg-color, #000000);
+}
+
+/* Mobile cursor fallback */
+@media (hover: none) and (pointer: coarse) {
+    * {
+        cursor: auto !important;
+    }
+
+    .custom-cursor {
+        display: none;
+    }
+}
+
+/* Focus states */
+button:focus,
+a:focus {
+    outline: 3px solid var(--text-color, #ffffff);
+    outline-offset: 3px;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    /* Mobile navigation */
+    .hidden.md\\:flex {
+        display: none;
+    }
+    
+    /* Add mobile menu button styles if needed */
+    header .flex.items-center.justify-between {
+        flex-wrap: wrap;
+    }
+    
+    header .text-sm.whitespace-nowrap {
+        font-size: 0.75rem;
+        margin-top: 0.5rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-link {
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
+    }
+
+    .glitch-text {
+        font-size: 4rem;
+    }
+
+    .brutal-card {
+        border-width: 2px;
+    }
+
+    .brutal-card::before {
+        top: 4px;
+        left: 4px;
+        right: -4px;
+        bottom: -4px;
+    }
+
+    .brutal-btn,
+    .brutal-btn-outline {
+        border-width: 2px;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+    }
+
+    .brutal-btn::before,
+    .brutal-btn-outline::before {
+        top: 4px;
+        left: 4px;
+        right: -4px;
+        bottom: -4px;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .brutal-card,
+    .brutal-btn,
+    .brutal-btn-outline {
+        border-width: 4px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .custom-cursor {
+        display: none;
+    }
+
+    .glitch-text::before,
+    .glitch-text::after {
+        animation: none;
+    }
+
+    .typewriter {
+        animation: none;
+        white-space: normal;
+    }
+
+    .ascii-bg-1,
+    .ascii-bg-2,
+    .ascii-bg-3 {
+        animation: none;
+    }
+
+    .brutal-card:hover,
+    .brutal-btn:hover,
+    .brutal-btn-outline:hover {
+        transform: none;
+    }
+
+    .nav-link:hover {
+        transform: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        background: var(--text-color, #ffffff);
+        color: var(--bg-color, #000000);
+    }
+
+    .brutal-card {
+        border: 2px solid var(--bg-color, #000000);
+        background: var(--text-color, #ffffff);
+    }
+
+    .brutal-card::before {
+        display: none;
+    }
+}
+
+/* VS Code-like File Tree Styles */
+.file-tree {
+    font-size: 0.875rem;
+}
+
+.file-tree-item {
+    margin-bottom: 2px;
+}
+
+.file-tree-folder {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+}
+
+.file-tree-folder:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.file-tree-folder > * {
+    margin-right: 8px;
+}
+
+.file-tree-folder > *:last-child {
+    margin-right: 0;
+}
+
+.file-tree-file {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px 4px 32px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+}
+
+.file-tree-file:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.file-tree-file.selected {
+    background: rgba(255, 255, 255, 0.2);
+    border-left: 3px solid #ffffff;
+}
+
+.file-tree-file > * {
+    margin-right: 8px;
+}
+
+.file-tree-file > *:last-child {
+    margin-right: 0;
+}
+
+.file-tree-children {
+    margin-left: 16px;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 8px;
+}
+
+/* Code syntax highlighting */
+.language-javascript {
+    color: #ffffff;
+}
+
+/* Modal backdrop blur effect */
+.fixed.inset-0.bg-black.bg-opacity-90 {
+    backdrop-filter: blur(4px);
+}
+
+/* Scrollbar for modal */
+.overflow-y-auto::-webkit-scrollbar {
+    width: 8px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Code editor improvements */
+pre code {
+    font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* File tree animations */
+.file-tree-folder svg {
+    transition: transform 0.2s ease;
+}
+
+.file-tree-folder:hover svg:first-child {
+    transform: scale(1.1);
+}
+
+/* Modal entrance animation */
+@keyframes modal-fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.fixed.inset-0.bg-black.bg-opacity-90 > div {
+    animation: modal-fade-in 0.3s ease-out;
+}
+
+/* Responsive modal */
+@media (max-width: 768px) {
+    .fixed.inset-0.bg-black.bg-opacity-90 > div {
+        margin: 1rem;
+        max-width: none;
+        max-height: calc(100vh - 2rem);
+    }
+    
+    .w-80 {
+        width: 200px;
+    }
+    
+    .file-tree-children {
+        margin-left: 12px;
+        padding-left: 6px;
+    }
+    
+    .file-tree-file {
+        padding-left: 24px;
+    }
+}
+
+/* Focus states for accessibility */
+.file-tree-folder:focus,
+.file-tree-file:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Selection highlight */
+.file-tree-file.selected::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #ffffff;
+}
+
+.file-tree-file {
+    position: relative;
+}
