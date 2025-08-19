@@ -588,7 +588,7 @@ function App() {
                   <ExternalLink className="w-3 h-3 ml-1" />
                 </a>
                 <a
-                  href="https://discord.com"
+                  href="https://discord.gg/yJcyvGAZNM"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:bg-white hover:text-black px-2 py-1 cursor-pointer flex items-center"
