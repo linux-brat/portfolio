@@ -36,5 +36,13 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/linux-brat/Aura-Discord-Access-Panel",
     icon: Globe,
     animationType: 'pulse'
+  },
+  {
+    id: "bspot",
+    title: "BSpotDownloader",
+    description: "A spotify only music downloader in terminal.",
+    githubUrl: "https://github.com/linux-brat/BSpotDownloader",
+    icon: ShellIcon,
+    animationType: 'pulse'
   }
 ];
