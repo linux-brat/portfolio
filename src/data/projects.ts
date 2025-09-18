@@ -55,11 +55,11 @@ export const projects: Project[] = [
     animationType: "pulse",
   },
   {
-    id: "bclick",
-    title: "BClick",
+    id: "bclicker",
+    title: "BClicker",
     description:
       "A professional Rust-based auto-clicker with a sleek Terminal User Interface.",
-    githubUrl: "https://github.com/linux-brat/BClick",
+    githubUrl: "https://github.com/linux-brat/BClicker",
     icon: ShellIcon,
     animationType: "pulse",
   },
