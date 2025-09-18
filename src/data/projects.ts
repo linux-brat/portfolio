@@ -54,4 +54,13 @@ export const projects: Project[] = [
     icon: ShellIcon,
     animationType: "pulse",
   },
+  {
+    id: "bclick",
+    title: "BClick",
+    description:
+      "A professional Rust-based auto-clicker with a sleek Terminal User Interface.",
+    githubUrl: "https://github.com/linux-brat/BClick",
+    icon: ShellIcon,
+    animationType: "pulse",
+  },
 ];
